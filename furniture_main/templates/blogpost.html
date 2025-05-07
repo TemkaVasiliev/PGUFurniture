@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="blog-post">
+  {% if post.image %}
+    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid mb-4">
+  {% endif %}
+  <h2>{{ post.title }}</h2>
+  <small>{{ post.published_at }}</small>
+  <div class="content">{{ post.content|linebreaks }}</div>
+  <p><a href="{% url 'blog:list' %}" class="back-link">← Назад к блогу</a></p>
+</div>
+
+<hr>
+
+<div class="comments-section">
+  <h3>Комментарии ({{ comments.count }})</h3>
+  {% for comment in comments %}
+    <div class="comment mb-3 p-3 border rounded">
+      <p class="mb-1"><strong>{{ comment.author.username }}</strong>
+        <small class="text-muted">{{ comment.date|date:"d.m.Y H:i" }}</small>
+      </p>
+      <p>{{ comment.text|linebreaks }}</p>
+    </div>
+  {% empty %}
+    <p>Пока нет ни одного комментария.</p>
+  {% endfor %}
+</div>
+
+<hr>
+
+{% if user.is_authenticated %}
+  <div class="comment-form mt-4">
+    <h4>Оставить комментарий</h4>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="form-group">
+        {{ form.text }}
+        {{ form.text.errors }}
+      </div>
+      <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+  </div>
+{% else %}
+  <p><a href="{% url 'login' %}">Войдите</a> чтобы оставить комментарий.</p>
+{% endif %}
+
+{% endblock %}

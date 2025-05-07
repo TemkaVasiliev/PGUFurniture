@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Обратная связь{% endblock %}
+{% block header %}Обратная связь{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h1>Обратная связь</h1>
+        {% if success %}
+            <p>Спасибо за ваш отзыв!</p>
+            <ul>
+                {% for key, value in data.items %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button id="submit-btn" type="submit">Отправить отзыв</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+      const submitBtn = document.getElementById('submit-btn');
+      if (submitBtn) {
+          const originalColor = submitBtn.style.color || window.getComputedStyle(submitBtn).color;
+          submitBtn.addEventListener('mouseover', function() {
+              submitBtn.style.color = 'red';
+          });
+          submitBtn.addEventListener('mouseout', function() {
+              submitBtn.style.color = originalColor;
+          });
+      }
+
+      const inputs = document.querySelectorAll('input, textarea, select');
+      inputs.forEach(function(input) {
+          const originalBg = input.style.backgroundColor || window.getComputedStyle(input).backgroundColor;
+          input.addEventListener('focus', function() {
+              input.style.backgroundColor = '#e0f7fa';
+          });
+          input.addEventListener('blur', function() {
+              input.style.backgroundColor = originalBg;
+          });
+      });
+    </script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Полезные ссылки{% endblock %}
+{% block header %}Полезные ссылки{% endblock %}
+
+{% block content %}
+    <ul class="links">
+        <li><a href="https://www.leroymerlin.ru/" target="_blank">Leroy Merlin</a> – строительные и мебельные товары.</li>
+        <li><a href="https://www.магазины-ремонт.рф" target="_blank">Магазины-ремонт.рф</a> – строительные товары.</li>
+        <li><a href="https://www.vseinstrumenti.ru" target="_blank">ВсеИнструменты.ру</a> – строительные инструменты.</li>
+    </ul>
+{% endblock %}
+
+{% block footer %}
+    <p><a href="{% url 'about' %}">Вернуться на главную</a></p>
+{% endblock %}

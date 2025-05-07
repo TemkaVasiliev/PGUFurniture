@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}О нашем магазине{% endblock %}
+
+{% block content %}
+  <h2 class="text-brown">О нашем магазине</h2>
+  <p class="lead">Мы предлагаем качественную мебель для вашего дома и офиса.</p>
+  <p>В каталоге представлены стильные и удобные решения для гостиной, спальни, кухни и рабочего пространства.</p>
+
+  <!-- Слайдер-карусель -->
+  <div id="mainCarousel" class="carousel slide container-custom" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner rounded-4 shadow-sm">
+      <div class="carousel-item active">
+        <img src="{% static 'app/content/slide1.jpg' %}" class="d-block w-100" alt="Слайд 1">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/content/slide2.jpg' %}" class="d-block w-100" alt="Слайд 2">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/content/slide3.jpg' %}" class="d-block w-100" alt="Слайд 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Назад</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Вперёд</span>
+    </button>
+  </div>
+{% endblock %}

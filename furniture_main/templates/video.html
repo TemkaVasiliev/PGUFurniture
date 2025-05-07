@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Видео{% endblock %}
+
+{% block content %}
+<div class="container-custom">
+  <h2 class="text-brown mb-4">Видео</h2>
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <video controls preload="metadata" width="100%">
+        <!-- Прямой абсолютный путь к файлу в MEDIA_ROOT -->
+        <source src="/media/videos/video1.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+      </video>
+      <p>Обзор 1</p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <video controls preload="metadata" width="100%">
+        <!-- Ещё один абсолютный путь -->
+        <source src="/media/videos/video2.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+      </video>
+      <p>Обзор 2</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

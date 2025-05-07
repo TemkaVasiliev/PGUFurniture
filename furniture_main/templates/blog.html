@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Каталог товаров</h2>
+  <ul class="list-unstyled">
+    {% for post in posts %}
+      <li class="mb-4">
+        <h3><a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a></h3>
+        <small>{{ post.published_date }}</small>
+        <p>{{ post.content|truncatechars:200 }}</p>
+        <a href="{% url 'blog:detail' post.pk %}">Читать далее</a>
+      </li>
+    {% empty %}
+      <li>Постов ещё нет.</li>
+    {% endfor %}
+  </ul>
+  {% if is_paginated %}
+    {% include "pagination.html" %}
+  {% endif %}
+{% endblock %}
